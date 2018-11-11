@@ -3,17 +3,26 @@ import { Http, Response } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { pipe } from 'rxjs';
 
+import * as $ from 'jquery';
+import 'foundation-sites';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'ComicClient';
 
   // NOTE: Localhost for demo purposes only.
-  private apiUrl = 'https://localhost:44324/api';
+  private apiUrl = 'https://localhost:44350/api/';
   public testData: string;
+
+  public ngOnInit() {
+    $(document).ready(function() {
+      $(document).foundation();
+    });
+  }
 
   constructor(private http: Http) {
     console.log("Initiating API connection test:")
