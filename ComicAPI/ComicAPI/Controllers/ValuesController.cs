@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace ComicAPI.Controllers
 {
@@ -21,7 +22,13 @@ namespace ComicAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return id.ToString();
+            MongoClient dbClient = new MongoClient("mongodb://127.0.0.1:27017");
+            var dbList = dbClient.ListDatabases().ToList();
+
+            IMongoDatabase db = dbClient.GetDatabase("test");
+            var collList = db.ListCollections().ToList();
+
+            return id.ToString() + "  " + dbList.Count.ToString();
         }
 
         // POST api/values
