@@ -14,7 +14,7 @@ namespace ComicAPI.DAL.Abstract
     {
         private readonly DALConfig dbConfig;
         private readonly IMongoDatabase mongoDatabase;
-        private readonly IMongoCollection<TModel> mongoCollection;
+        protected readonly IMongoCollection<TModel> mongoCollection;
 
         #region Constructors
         /// <summary>
