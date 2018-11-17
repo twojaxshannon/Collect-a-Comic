@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ComicAPI.DAL.Repositories;
+using ComicAPI.DAL.Utility;
+using ComicAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace ComicAPI.Controllers
 {
@@ -21,7 +27,22 @@ namespace ComicAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return id.ToString();
+            // TODO: Test code for quickly verifying changes.
+            DALConfig config = new DALConfig();
+            var collectionDb = config.GetMongoDatabase();
+            collectionDb.DropCollection("User");
+
+            UserRepository userRepository = new UserRepository();
+            ComicCollectionRepository comicCollectionRepository = new ComicCollectionRepository();
+            CollectedVolumeRepository collectedVolumeRepository = new CollectedVolumeRepository();
+
+            userRepository.Save(new ComicAPI.Models.User() { Name = "Shannon" });
+            userRepository.Save(new ComicAPI.Models.User() { Name = "Tony Stark" });
+
+            var test = userRepository.GetAll();
+
+            return "Testing!";
+            
         }
 
         // POST api/values
