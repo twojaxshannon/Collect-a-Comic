@@ -5,6 +5,7 @@ import { pipe } from 'rxjs';
 
 import * as $ from 'jquery';
 import 'foundation-sites';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +18,13 @@ export class AppComponent {
   // NOTE: Localhost for demo purposes only.
   private apiUrl = 'https://localhost:44350/api/';
   public testData: string;
-
   public ngOnInit() {
     $(document).ready(function() {
       $(document).foundation();
     });
   }
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private cookieService: CookieService) {
     console.log("Initiating API connection test:")
     this.connectionDemo().subscribe(data => { 
       this.setTestData(data["_body"]);
@@ -39,5 +39,12 @@ export class AppComponent {
     console.log(data);
     this.testData = data;
     console.log(this.testData);
+
+    this.setTestCookie(this.testData);
+  }
+
+  setTestCookie(data: any) {
+    this.cookieService.set('CollectAComicTestCookie', data);
+    console.log(this.cookieService.get('CollectAComicTestCookie'));
   }
 }
