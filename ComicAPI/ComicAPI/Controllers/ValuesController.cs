@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using ComicAPI.DAL.Repositories;
 using ComicAPI.DAL.Utility;
 using ComicAPI.Models;
+using ComicAPI.Models.ComicVine;
+using ComicAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -25,9 +27,34 @@ namespace ComicAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<string>> GetAsync(int id)
         {
             // TODO: Test code for quickly verifying changes.
+
+            ComicVineService comicVineService = new ComicVineService();
+            //var testVolume = await comicVineService.GetVolume("4050-796");
+
+
+            VolumeFilter filter = new VolumeFilter() { Name = "Teen Titans" };
+            VolumeSort sort = new VolumeSort();
+
+            ComicSearch comicSearch = new ComicSearch() { VolumeFilterCriteria = filter, VolumeSortCriteria = sort };
+
+
+
+
+            var testVolumes = await comicVineService.SearchComics(comicSearch);
+
+            var testOneIssue = await comicVineService.GetIssue(30000);
+
+            var testOneMore = await comicVineService.GetIssue(0);
+
+            return "Testing";
+
+            //var moreTest = testVolumes.Where(x => x.Deck != null);
+
+            //return testVolumes[0].Deck == null ? testVolumes[0].Description : testVolumes[0].Deck.ToString();
+            /*
             DALConfig config = new DALConfig();
             var collectionDb = config.GetMongoDatabase();
             collectionDb.DropCollection("User");
@@ -40,9 +67,9 @@ namespace ComicAPI.Controllers
             userRepository.Save(new ComicAPI.Models.User() { Name = "Tony Stark" });
 
             var test = userRepository.GetAll();
-
-            return "Testing!";
             
+            return "Testing!";
+            */
         }
 
         // POST api/values
