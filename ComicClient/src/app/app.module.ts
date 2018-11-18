@@ -7,11 +7,14 @@ import { HttpModule } from '@angular/http';
 
 import { CookieService } from 'ngx-cookie-service';
 import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSearch.component';
+import { ComicVineIssueComponent } from './Modules/ComicVineIssue/comicVineIssue.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ComicVineSearchComponent
+    ComicVineSearchComponent,
+    ComicVineIssueComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,8 @@ import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSea
   providers: [
     AppComponent,
     CookieService,
-    ComicVineSearchComponent
+    ComicVineSearchComponent,
+    ComicVineIssueComponent
   ],
   bootstrap: [AppComponent]
 })

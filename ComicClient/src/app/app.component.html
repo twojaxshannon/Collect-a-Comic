@@ -1,18 +1,20 @@
 <div name="OverallContainer" class="overall-container">
 
-  <div name="TopBar" class="top-bar flex-row">
-    <div name="MenuBase" >
-      <ul class="menu flex-row flex-row-padding">
-        <li><h1>{{ title }}</h1></li>
-      </ul>
-    </div>
-    <!-- TODO: Return to styling - Improve label, expand Name textbox when room allows & reduce min width for tiny screens. -->
-    <div name="LoginItems">
-      <ul class="menu flex-row flex-row-padding">
-        <li><label id="loginInputLabel" for="loginInput" class="inline">Name</label></li>
-        <li><input id="loginInput" aria-labelledby="loginInputLabel" type="text" placeholder="Name" class="input inline"/></li>
-        <li><button id="loginButton" type="submit" class="button small inline">Login</button></li>
-      </ul>
+  <div name="TopBar" class="top-bar">
+    <div class="flex-row flex-wrap">
+      <div name="MenuBase" >
+        <ul class="menu flex-row flex-row-padding">
+          <li><h1>{{ title }}</h1></li>
+        </ul>
+      </div>
+      <!-- TODO: Return to styling - Improve label, expand Name textbox when room allows & reduce min width for tiny screens. -->
+      <div name="LoginItems">
+        <ul class="menu flex-row flex-row-padding">
+          <li><label id="loginInputLabel" for="loginInput" class="inline">Name</label></li>
+          <li><input id="loginInput" aria-labelledby="loginInputLabel" type="text" placeholder="Name" class="input inline"/></li>
+          <li><button id="loginButton" type="submit" class="button small inline">Login</button></li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -22,9 +24,7 @@
   </div>
 
   <div name="MainContent" class="main-content">
-    <comicVine-search>
-
-    </comicVine-search>
+    <comicVine-search></comicVine-search>
   </div>
 
 </div>

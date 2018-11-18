@@ -14,11 +14,15 @@
     padding-top: 1em;   // Applies to every child element of the overall container
 }
 .overall-container:first-child {
-    padding-top: 0; // Applies only to teh first child of the overall container
+    padding-top: 0; // Applies only to the first child of the overall container
 }
 
 .main-content {
     height: 100%;
+}
+
+.top-bar {
+    display: inline-block;
 }
 
 .top-bar h1 {
@@ -65,9 +69,20 @@ label {
     align-items: center;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .flex-row-padding > * {
     margin-right: .5em;
     margin-left: .5em;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
 }
 
 .flex-space-even {

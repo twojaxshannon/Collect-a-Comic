@@ -1,0 +1,53 @@
+<!-- TODO: Ideally, additional aria-labels should be added for better clarity (and tested with a screen reader).-->
+<!-- TODO: Swap out details/summary for an expansion panel implementation if time allows, for better styling, accessibility, and browser support. -->
+<details>
+    <summary>Search comics by...</summary>
+    <form aria-label="ComicVine Search Form" name="SearchCriteria" class="grid-container fluid search-form">
+        <div name="VolumeCriteria" class="grid-x grid-margin-x form-section">
+            <div class="cell">
+                <h2>Comic</h2>
+            </div>
+            <div class="small-6 cell">
+                <label>Volume Name
+                    <input class="input" type="text"/>
+                </label>
+            </div>
+            <div class="small-6 cell">
+                <label>Publisher
+                    <input class="input" type="text"/>
+                </label>
+            </div>
+        </div>
+
+        <div name="IssueCriteria" class="grid-x grid-margin-x form-section">
+            <div class="cell">
+                <h2>Issue</h2>
+            </div>
+            <div class="small-9 cell">
+                <label>Issue Name
+                    <input class="input" type="text"/>
+                </label>
+            </div>
+            <div class="small-3 cell">
+                <label>Issue #
+                    <input class="input" type="number"/>
+                </label>
+            </div>
+            <div class="small-6 cell">
+                <label>Cover Date
+                    <input class="input" type="date"/>
+                </label>
+            </div>
+            <div class="small-6 cell">
+                <label>Store Date
+                    <input class="input" type="date"/>
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="button expanded">Search ComicVine</button>
+    </form>
+</details>
+
+<div name="IssuesFound">
+    <comicVine-issue></comicVine-issue>
+</div>
