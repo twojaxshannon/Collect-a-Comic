@@ -6,6 +6,7 @@ import { pipe } from 'rxjs';
 import * as $ from 'jquery';
 import 'foundation-sites';
 import { CookieService } from 'ngx-cookie-service';
+import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSearch.component';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,12 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ComicClient';
+  title = 'Collect-A-Comic';
+  comicVineComponent: ComicVineSearchComponent;
 
   // NOTE: Localhost for demo purposes only.
-  private apiUrl = 'https://localhost:44350/api/';
+  // TODO: Localhost port may change. Establish designated path for demo?
+  private apiUrl = 'https://localhost:44324/api/';
   public testData: string;
   public ngOnInit() {
     $(document).ready(function() {
@@ -25,14 +28,19 @@ export class AppComponent {
   }
 
   constructor(private http: Http, private cookieService: CookieService) {
+    this.comicVineComponent =new ComicVineSearchComponent(this.http);
     console.log("Initiating API connection test:")
-    this.connectionDemo().subscribe(data => { 
+    /*this.connectionDemo().subscribe(data => { 
       this.setTestData(data["_body"]);
-    });
+    });*/
+    this.setTestData(this.connectionDemo());
   }
 
+  // TODO: Remove any unnecessary comments, functions.
+
   connectionDemo() {
-    return this.http.get(`${this.apiUrl}/values/1`);
+    return new ComicVineSearchComponent(this.http);
+    //return this.http.get(`${this.apiUrl}values/1`);
   }
 
   setTestData(data: any) {
@@ -43,6 +51,7 @@ export class AppComponent {
     this.setTestCookie(this.testData);
   }
 
+  /* TODO: Cookie data should be tokens! Convert if time allows. */
   setTestCookie(data: any) {
     this.cookieService.set('CollectAComicTestCookie', data);
     console.log(this.cookieService.get('CollectAComicTestCookie'));

@@ -15,15 +15,6 @@ namespace ComicAPI.Controllers
         LoginService _loginService = new LoginService();
 
         /// <summary>
-        /// Initialize with default values.
-        /// </summary>
-        /*
-        public LoginController()
-        {
-            _loginService = new LoginService();
-        } */
-
-        /// <summary>
         /// Demo login method. Attempt to log into the site as the given user.
         /// </summary>
         /// <param name="userName">Name of the user to log in as.</param>

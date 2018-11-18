@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 
 import { CookieService } from 'ngx-cookie-service';
+import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSearch.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ComicVineSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +20,8 @@ import { CookieService } from 'ngx-cookie-service';
   ],
   providers: [
     AppComponent,
-    CookieService
+    CookieService,
+    ComicVineSearchComponent
   ],
   bootstrap: [AppComponent]
 })

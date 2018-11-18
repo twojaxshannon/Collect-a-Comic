@@ -1,4 +1,37 @@
-<div style="text-align:center">
+<div name="OverallContainer" class="overall-container">
+
+  <div name="TopBar" class="top-bar flex-row">
+    <div name="MenuBase" >
+      <ul class="menu flex-row flex-row-padding">
+        <li><h1>{{ title }}</h1></li>
+      </ul>
+    </div>
+    <!-- TODO: Return to styling - Improve label, expand Name textbox when room allows & reduce min width for tiny screens. -->
+    <div name="LoginItems">
+      <ul class="menu flex-row flex-row-padding">
+        <li><label id="loginInputLabel" for="loginInput" class="inline">Name</label></li>
+        <li><input id="loginInput" aria-labelledby="loginInputLabel" type="text" placeholder="Name" class="input inline"/></li>
+        <li><button id="loginButton" type="submit" class="button small inline">Login</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <div name="NavToggles" id="navTogglesDiv" class="flex-row flex-space-even">
+    <button class="button pill-shape">My Collection</button>
+    <button class="button pill-shape">ComicVine Search</button>
+  </div>
+
+  <div name="MainContent" class="main-content">
+    <comicVine-search>
+
+    </comicVine-search>
+  </div>
+
+</div>
+
+
+<!-- 
+  <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -33,3 +66,4 @@
 </ul>
 
 <router-outlet></router-outlet>
+-->

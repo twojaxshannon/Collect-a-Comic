@@ -45,11 +45,7 @@ namespace ComicAPI.Controllers
 
             var testVolumes = await comicVineService.SearchComics(comicSearch);
 
-            var testOneIssue = await comicVineService.GetIssue(30000);
-
-            var testOneMore = await comicVineService.GetIssue(0);
-
-            return "Testing";
+            return testVolumes.Results.ToString();
 
             //var moreTest = testVolumes.Where(x => x.Deck != null);
 
