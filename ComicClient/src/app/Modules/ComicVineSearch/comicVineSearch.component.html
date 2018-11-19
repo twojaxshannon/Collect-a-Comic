@@ -1,53 +1,56 @@
 <!-- TODO: Ideally, additional aria-labels should be added for better clarity (and tested with a screen reader).-->
 <!-- TODO: Swap out details/summary for an expansion panel implementation if time allows, for better styling, accessibility, and browser support. -->
-<details>
+<details *ngIf="searchCriteria">
     <summary>Search comics by...</summary>
     <form aria-label="ComicVine Search Form" name="SearchCriteria" class="grid-container fluid search-form">
-        <div name="VolumeCriteria" class="grid-x grid-margin-x form-section">
+        <div name="VolumeCriteria" class="grid-x grid-margin-x form-section" *ngIf="searchCriteria.volumeFilterCriteria">
             <div class="cell">
                 <h2>Comic</h2>
             </div>
             <div class="small-6 cell">
                 <label>Volume Name
-                    <input class="input" type="text"/>
+                    <input name="volumeNameInput" class="input" type="text" [(ngModel)]="searchCriteria.volumeFilterCriteria.name"/>
                 </label>
             </div>
             <div class="small-6 cell">
                 <label>Publisher
-                    <input class="input" type="text"/>
+                    <input name="volumePublisherInput" class="input" type="text" [(ngModel)]="searchCriteria.volumeFilterCriteria.publisher"/>
                 </label>
             </div>
         </div>
 
-        <div name="IssueCriteria" class="grid-x grid-margin-x form-section">
+        <div name="IssueCriteria" class="grid-x grid-margin-x form-section" *ngIf="searchCriteria.issueFilterCriteria">
             <div class="cell">
                 <h2>Issue</h2>
             </div>
             <div class="small-9 cell">
                 <label>Issue Name
-                    <input class="input" type="text"/>
+                    <input name="IssueNameInput" class="input" type="text" [(ngModel)]="searchCriteria.issueFilterCriteria.name"/>
                 </label>
             </div>
             <div class="small-3 cell">
                 <label>Issue #
-                    <input class="input" type="number"/>
+                    <input name="IssueNumberInput" class="input" type="number" [(ngModel)]="searchCriteria.issueFilterCriteria.issue_number"/>
                 </label>
             </div>
+            <!--TODO: Fields should include validation! Skipping for now, but add if time allows. -->
             <div class="small-6 cell">
                 <label>Cover Date
-                    <input class="input" type="date"/>
+                    <input name="IssueCoverDateInput" class="input" type="date" [(ngModel)]="searchCriteria.issueFilterCriteria.cover_date"/>
                 </label>
             </div>
             <div class="small-6 cell">
                 <label>Store Date
-                    <input class="input" type="date"/>
+                    <input name="IssueStoreDateInput" class="input" type="date" [(ngModel)]="searchCriteria.issueFilterCriteria.store_date"/>
                 </label>
             </div>
         </div>
-        <button type="submit" class="button expanded">Search ComicVine</button>
+        <button type="submit" class="button expanded" (click)="searchComics()">Search ComicVine</button>
     </form>
 </details>
 
-<div name="IssuesFound">
-    <comicVine-issue></comicVine-issue>
+<div name="IssuesFound" class="grid-x grid-margin-x small-up-2 medium-up-3 fluid issuesGrid" style="justify-content: space-evenly">
+        <comicVine-issue *ngFor="let issue of searchResponse.results" [issue]="issue"></comicVine-issue>
+    
+    <!-- TODO: Add paging based on response limit/offset to page through comics. -->
 </div>

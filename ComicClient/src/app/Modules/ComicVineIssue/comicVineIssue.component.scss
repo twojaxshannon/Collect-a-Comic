@@ -1,0 +1,38 @@
+h1 {
+    font-size: 1.4em;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+.card-container {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    height: calc(100% - 3em);
+}
+
+
+.card {
+    width: 25vw;
+    max-width: 300px;
+    min-width: 150px;
+    margin:0;
+    height: calc(100% - 1em);
+}
+
+.card-divider {
+    flex-direction: column;
+    font-size: .5em;
+}
+
+
+.card-section {
+    max-height: 20em;
+    font-size: .7em;
+    overflow-y: auto;
+}
+
+.button.expanded {
+    margin: 0;
+}

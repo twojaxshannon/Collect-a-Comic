@@ -7,9 +7,9 @@ import * as $ from 'jquery';
 import 'foundation-sites';
 import { CookieService } from 'ngx-cookie-service';
 import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSearch.component';
-import { userInfo } from 'os';
 import { User } from './Models/user.model';
 import { UserService } from './Services/user.services';
+import { ConnectionInfo } from './Models/connectionInfo.model';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +20,17 @@ export class AppComponent {
   title = 'Collect-A-Comic';
   comicVineComponent: ComicVineSearchComponent;
   testUser: User;
-  testUsers: User[];
+  public testUsers: User[];
 
   // NOTE: Localhost for demo purposes only.
   // TODO: Localhost port may change. Establish designated path for demo?
-  private apiUrl = 'https://localhost:44324/api/';
+  // TODO: Not a good place for the API path; just keeping here for demo purposes.
   private userService : UserService;
+  private connectionInfo : ConnectionInfo = new ConnectionInfo({
+    apiUrl : 'https://localhost:44324/api/',
+    http: this.http
+  });
+
   public testData: string;
   
   public ngOnInit() {
@@ -36,25 +41,24 @@ export class AppComponent {
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
     this.userService = new UserService(this.http);
-    this.comicVineComponent =new ComicVineSearchComponent(this.http);
-    console.log(this.connectionDemo());
   }
 
-  // TODO: Remove any unnecessary comments, functions.
+  // TODO: Should get the current user session via cookie if exists.
+  // TODO: Planned for logging in and getting user's current collection, but ran out of time.
 
   connectionDemo() {
+    // TODO: Leaving these here as an example of users service connection
+
     /* // Get One
     this.userService.getUser(this.apiUrl).subscribe(
       value => { this.testUser = value; console.log(value); console.log(this.testUser); }
     );
-      */ 
+      
 
     // Get Many
-    this.userService.getAllUsers(this.apiUrl).subscribe(
-      value => {console.log(value); this.testUsers = value; console.log(this.testUsers);}
-    )
-    return this.testUser;
-    
+    this.userService.getAllUsers(this.connectionInfo.apiUrl).subscribe(
+      value => { this.testUsers = value; }
+    )*/ 
   }
 
   setTestData(data: any) {

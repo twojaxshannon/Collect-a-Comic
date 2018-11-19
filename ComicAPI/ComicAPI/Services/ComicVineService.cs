@@ -211,7 +211,7 @@ namespace ComicAPI.Services
 
         public async Task<VolumesResponse> GetVolumes(VolumeFilter filter, VolumeSort sort)
         {
-            return await GetMany<VolumesResponse, VolumeSort, VolumeFilter>("volumes", sort, filter);
+            return await GetMany<VolumesResponse, VolumeSort, VolumeFilter>("volumes", sort, filter, 100);
         }
 
         public async Task<IssuesResponse> GetIssues(IssueFilter filter, IssueSort sort)

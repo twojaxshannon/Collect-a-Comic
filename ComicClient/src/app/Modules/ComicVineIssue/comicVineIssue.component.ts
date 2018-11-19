@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import { map } from 'rxjs/operators';
 import { pipe } from 'rxjs';
+import { Issue } from '../../Models/issue.model';
 
 @Component({
   selector: 'comicVine-issue',
@@ -9,17 +10,17 @@ import { pipe } from 'rxjs';
   styleUrls: ['./comicVineIssue.component.scss']
 })
 export class ComicVineIssueComponent {
-  // NOTE: Localhost for demo purposes only.
-  // TODO: Localhost port may change. Establish designated path for demo?
-  private apiUrl = 'https://localhost:44324/api/';
-  public testData: string;
+  public _issue : Issue;
+
   public ngOnInit() {
+  }
+
+  @Input()
+  set issue(issue: Issue) {
+    this._issue = issue;
   }
 
   constructor(private http: HttpClient) {
   }
 
-  connectionDemo() {
-    return this.http.get(`${this.apiUrl}values/1`);
-  }
 }

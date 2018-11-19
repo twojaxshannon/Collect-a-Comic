@@ -8,6 +8,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSearch.component';
 import { ComicVineIssueComponent } from './Modules/ComicVineIssue/comicVineIssue.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    FormsModule
   ],
   providers: [
     AppComponent,

@@ -1,6 +1,6 @@
-export class User  {
+export class VolumeFilter  {
     name: string;
-    id: string;
+    publisher: string;
 
     constructor(obj?: any) {
         Object.assign(this, obj);

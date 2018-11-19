@@ -9,7 +9,6 @@
         public string Date_last_updated { get; set; }
         public object Deck { get; set; }
         public string Description { get; set; }
-        public bool Has_staff_review { get; set; }
         public int Id { get; set; }
         public Image Image { get; set; }
         public string Issue_number { get; set; }
