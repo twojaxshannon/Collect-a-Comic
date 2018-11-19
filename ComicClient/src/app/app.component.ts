@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {HttpClient} from "@angular/common/http";
 import { map } from 'rxjs/operators';
 import { pipe } from 'rxjs';
 
 import * as $ from 'jquery';
 import 'foundation-sites';
 import { CookieService } from 'ngx-cookie-service';
+import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSearch.component';
+import { User } from './Models/user.model';
+import { UserService } from './Services/user.services';
+import { ConnectionInfo } from './Models/connectionInfo.model';
 
 @Component({
   selector: 'app-root',
@@ -13,26 +17,48 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ComicClient';
+  title = 'Collect-A-Comic';
+  comicVineComponent: ComicVineSearchComponent;
+  testUser: User;
+  public testUsers: User[];
 
   // NOTE: Localhost for demo purposes only.
-  private apiUrl = 'https://localhost:44350/api/';
+  // TODO: Localhost port may change. Establish designated path for demo?
+  // TODO: Not a good place for the API path; just keeping here for demo purposes.
+  private userService : UserService;
+  private connectionInfo : ConnectionInfo = new ConnectionInfo({
+    apiUrl : 'https://localhost:44324/api/',
+    http: this.http
+  });
+
   public testData: string;
+  
   public ngOnInit() {
     $(document).ready(function() {
       $(document).foundation();
     });
   }
 
-  constructor(private http: Http, private cookieService: CookieService) {
-    console.log("Initiating API connection test:")
-    this.connectionDemo().subscribe(data => { 
-      this.setTestData(data["_body"]);
-    });
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+    this.userService = new UserService(this.http);
   }
 
+  // TODO: Should get the current user session via cookie if exists.
+  // TODO: Planned for logging in and getting user's current collection, but ran out of time.
+
   connectionDemo() {
-    return this.http.get(`${this.apiUrl}/values/1`);
+    // TODO: Leaving these here as an example of users service connection
+
+    /* // Get One
+    this.userService.getUser(this.apiUrl).subscribe(
+      value => { this.testUser = value; console.log(value); console.log(this.testUser); }
+    );
+      
+
+    // Get Many
+    this.userService.getAllUsers(this.connectionInfo.apiUrl).subscribe(
+      value => { this.testUsers = value; }
+    )*/ 
   }
 
   setTestData(data: any) {
@@ -43,6 +69,7 @@ export class AppComponent {
     this.setTestCookie(this.testData);
   }
 
+  /* TODO: Cookie data should be tokens! Convert if time allows. */
   setTestCookie(data: any) {
     this.cookieService.set('CollectAComicTestCookie', data);
     console.log(this.cookieService.get('CollectAComicTestCookie'));

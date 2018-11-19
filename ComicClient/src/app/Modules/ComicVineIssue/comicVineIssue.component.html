@@ -1,0 +1,25 @@
+<div name="cardContainer" class="card-container">
+    <div class="card">
+        <div class="card-divider">
+        <h1>{{_issue.volume.name}}</h1>
+        <h2>
+            <span *ngIf="_issue.issue_number">#{{_issue.issue_number}} </span>
+            <span>{{_issue.name}}</span>
+        </h2>
+        <span><em>Cover Date:</em> {{_issue.cover_date}}</span>
+        <span><em>Store Date:</em> {{_issue.store_date}}</span>
+        </div>
+        <div class="card-image">
+            <img src="{{_issue.image.small_url}}">
+        </div>
+        <div class="card-section">
+            <div *ngIf="_issue.description" [innerHtml]="_issue.description"></div>
+            <div *ngIf="_issue.deck">
+                {{_issue.deck}}
+            </div>
+        </div> 
+
+    </div>
+    <!--TODO: Add an ngIf to toggle this to a Collected status if user already collected it.-->
+    <button class="button expanded">Collect</button>
+  </div>

@@ -1,0 +1,92 @@
+@import '../assets/foundation-sites/settings';
+
+
+.overall-container {
+    text-align: "center";
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Place default top/bottom padding to separate elements.
+    Could actually use :not(:first-child) selector, but that is not supported in legacy browsers.*/
+.overall-container > * {
+    padding-top: 1em;   // Applies to every child element of the overall container
+}
+.overall-container:first-child {
+    padding-top: 0; // Applies only to the first child of the overall container
+}
+
+.main-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.top-bar {
+    display: inline-block;
+}
+
+.top-bar h1 {
+    font-size: x-large;
+    color: get-color(primary);
+    font-weight: bold;
+}
+
+.top-bar input {
+    /* Customize the default Foundation styling. */
+    margin-right: 0;
+    max-width: 150px;
+}
+
+.top-bar label {
+    font-size: large;
+}
+
+label {
+    /* Remove Foundation styling so that labels will not use the color fills. */
+    background-color: transparent;
+    color: $body-font-color;
+}
+
+.inline {
+    /* Set uniform line-heights for inline Foundation styling. */
+    line-height: 1;
+}
+
+
+
+.pill-shape {
+    /* Perfect pill shape occurs when radius settings are too high, as they're forced to round
+        within bounds regardless of width/height. */
+    -webkit-border-radius: 100vh;
+    -moz-border-radius: 100vh;
+    border-radius: 100vh;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-row-padding > * {
+    margin-right: .5em;
+    margin-left: .5em;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-space-even {
+    justify-content: space-evenly;
+}
