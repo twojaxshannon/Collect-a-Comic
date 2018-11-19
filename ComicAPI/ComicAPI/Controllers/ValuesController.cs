@@ -27,10 +27,15 @@ namespace ComicAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<string>> GetAsync(int id)
+        public async Task<ActionResult<List<User>>> GetAsync(int id)
         {
             // TODO: Test code for quickly verifying changes.
 
+
+            UserRepository userRepository = new UserRepository();
+            return userRepository.GetAll();
+
+            /*
             ComicVineService comicVineService = new ComicVineService();
             //var testVolume = await comicVineService.GetVolume("4050-796");
 
@@ -46,10 +51,8 @@ namespace ComicAPI.Controllers
             var testVolumes = await comicVineService.SearchComics(comicSearch);
 
             return testVolumes.Results.ToString();
+            */
 
-            //var moreTest = testVolumes.Where(x => x.Deck != null);
-
-            //return testVolumes[0].Deck == null ? testVolumes[0].Description : testVolumes[0].Deck.ToString();
             /*
             DALConfig config = new DALConfig();
             var collectionDb = config.GetMongoDatabase();

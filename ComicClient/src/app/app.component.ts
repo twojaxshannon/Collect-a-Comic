@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {HttpClient} from "@angular/common/http";
 import { map } from 'rxjs/operators';
 import { pipe } from 'rxjs';
 
@@ -7,6 +7,9 @@ import * as $ from 'jquery';
 import 'foundation-sites';
 import { CookieService } from 'ngx-cookie-service';
 import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSearch.component';
+import { userInfo } from 'os';
+import { User } from './Models/user.model';
+import { UserService } from './Services/user.services';
 
 @Component({
   selector: 'app-root',
@@ -16,31 +19,42 @@ import { ComicVineSearchComponent } from './Modules/ComicVineSearch/comicVineSea
 export class AppComponent {
   title = 'Collect-A-Comic';
   comicVineComponent: ComicVineSearchComponent;
+  testUser: User;
+  testUsers: User[];
 
   // NOTE: Localhost for demo purposes only.
   // TODO: Localhost port may change. Establish designated path for demo?
   private apiUrl = 'https://localhost:44324/api/';
+  private userService : UserService;
   public testData: string;
+  
   public ngOnInit() {
     $(document).ready(function() {
       $(document).foundation();
     });
   }
 
-  constructor(private http: Http, private cookieService: CookieService) {
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+    this.userService = new UserService(this.http);
     this.comicVineComponent =new ComicVineSearchComponent(this.http);
-    console.log("Initiating API connection test:")
-    /*this.connectionDemo().subscribe(data => { 
-      this.setTestData(data["_body"]);
-    });*/
-    this.setTestData(this.connectionDemo());
+    console.log(this.connectionDemo());
   }
 
   // TODO: Remove any unnecessary comments, functions.
 
   connectionDemo() {
-    return new ComicVineSearchComponent(this.http);
-    //return this.http.get(`${this.apiUrl}values/1`);
+    /* // Get One
+    this.userService.getUser(this.apiUrl).subscribe(
+      value => { this.testUser = value; console.log(value); console.log(this.testUser); }
+    );
+      */ 
+
+    // Get Many
+    this.userService.getAllUsers(this.apiUrl).subscribe(
+      value => {console.log(value); this.testUsers = value; console.log(this.testUsers);}
+    )
+    return this.testUser;
+    
   }
 
   setTestData(data: any) {
